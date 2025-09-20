@@ -1,22 +1,16 @@
 import { createContext, useCallback, useContext, useState } from 'react'
 import { useRef as useDomRef } from 'react'
 
-export type ModalCloseReason = 'submit' | 'cancel' | 'backdrop'
-
 type Resolver<T> = (value: T | PromiseLike<T>) => void
 
 type ActiveModalState<T> = {
-  render: (
-    close: (value: T | null, reason?: ModalCloseReason) => void
-  ) => React.ReactNode
+  render: (close: (value: T | null) => void) => React.ReactNode
   resolve: Resolver<T | null>
 }
 
 type ModalControllerContextValue = {
   open: <T>(
-    render: (
-      close: (value: T | null, reason?: ModalCloseReason) => void
-    ) => React.ReactNode
+    render: (close: (value: T | null) => void) => React.ReactNode
   ) => Promise<T | null>
 }
 
