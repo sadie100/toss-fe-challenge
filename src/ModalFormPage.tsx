@@ -6,21 +6,16 @@ import AnimalForm from './AnimalForm'
 const blocks = [...Array(40)].map((_, i) => i + 1)
 
 const ModalFormPage = () => {
-  const [expanded, setExpanded] = useState(false)
   const openModal = useOpenModal()
 
   const handleAccountOpen = async () => {
-    setExpanded(true)
     const result = await openModal(AccountForm)
     console.log('modal result', result)
-    setExpanded(false)
   }
 
   const handleAnimalOpen = async () => {
-    setExpanded(true)
     const result = await openModal(AnimalForm)
     console.log('modal result', result)
-    setExpanded(false)
   }
 
   return (
@@ -30,17 +25,11 @@ const ModalFormPage = () => {
         <button
           type="button"
           aria-haspopup="dialog"
-          aria-expanded={expanded}
           onClick={handleAccountOpen}
         >
           계정 모달 열기
         </button>
-        <button
-          type="button"
-          aria-haspopup="dialog"
-          aria-expanded={expanded}
-          onClick={handleAnimalOpen}
-        >
+        <button type="button" aria-haspopup="dialog" onClick={handleAnimalOpen}>
           동물 모달 열기
         </button>
       </header>
