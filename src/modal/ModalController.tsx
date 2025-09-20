@@ -64,7 +64,17 @@ export const ModalControllerProvider = ({
     <ModalControllerContext.Provider value={{ open }}>
       {children}
       {/* Host 영역: 단일 dialog를 항상 렌더하고, 콘텐츠만 교체 */}
-      <dialog ref={dialogRef} role="dialog" aria-modal="true">
+      <dialog
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        onClick={(e) => {
+          //모달 바깥 눌렀을때 닫기
+          if (e.target === e.currentTarget) {
+            close(null)
+          }
+        }}
+      >
         {active ? active.render((v) => close(v)) : null}
       </dialog>
     </ModalControllerContext.Provider>
