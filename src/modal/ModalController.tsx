@@ -37,6 +37,9 @@ export const ModalControllerProvider = ({
         setActive({ render, resolve })
         const dialog = dialogRef.current
         if (dialog && !dialog.open) {
+          // Lock background scroll
+          document.body.style.overflow = 'hidden'
+
           dialog.showModal()
         }
       })
@@ -55,6 +58,8 @@ export const ModalControllerProvider = ({
         if (dialog && dialog.open) {
           dialog.close()
         }
+        // Unlock background scroll
+        document.body.style.overflow = ''
       }
     },
     [active]
