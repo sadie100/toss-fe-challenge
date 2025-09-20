@@ -1,8 +1,8 @@
 import type { FormEventHandler } from 'react'
 
 export type FormModalValues = {
-  fullName: string
-  email: string
+  name: string
+  age: number
 }
 
 export type FormModalContentProps = {
@@ -15,8 +15,8 @@ const AnimalForm = ({ initialValues, close }: FormModalContentProps) => {
     e.preventDefault()
     const data = new FormData(e.currentTarget)
     close({
-      fullName: String(data.get('fullName') ?? ''),
-      email: String(data.get('email') ?? ''),
+      name: String(data.get('name') ?? ''),
+      age: Number(data.get('age') ?? ''),
     })
   }
 
@@ -26,23 +26,23 @@ const AnimalForm = ({ initialValues, close }: FormModalContentProps) => {
       onSubmit={onSubmit}
       style={{ minWidth: 320, maxWidth: '90vw' }}
     >
-      <h2 style={{ margin: '0 0 1rem' }}>정보 입력</h2>
+      <h2 style={{ margin: '0 0 1rem' }}>동물 정보 입력</h2>
       <div style={{ display: 'grid', gap: '.75rem' }}>
-        <label htmlFor="fullName">이름</label>
+        <label htmlFor="name">동물 이름</label>
         <input
-          id="fullName"
-          name="fullName"
+          id="name"
+          name="name"
           type="text"
-          defaultValue={initialValues?.fullName ?? ''}
+          defaultValue={initialValues?.name ?? ''}
           required
           autoFocus
         />
-        <label htmlFor="email">이메일</label>
+        <label htmlFor="age">동물 나이</label>
         <input
-          id="email"
-          name="email"
-          type="email"
-          defaultValue={initialValues?.email ?? ''}
+          id="age"
+          name="age"
+          type="number"
+          defaultValue={initialValues?.age ?? ''}
           required
         />
         <div

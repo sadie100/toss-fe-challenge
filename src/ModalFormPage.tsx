@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import useOpenModal from './modal/useOpenModal'
 import AccountForm from './AccountForm'
+import AnimalForm from './AnimalForm'
 
 const blocks = [...Array(40)].map((_, i) => i + 1)
 
@@ -8,9 +9,16 @@ const ModalFormPage = () => {
   const [expanded, setExpanded] = useState(false)
   const openModal = useOpenModal()
 
-  const handleOpen = async () => {
+  const handleAccountOpen = async () => {
     setExpanded(true)
     const result = await openModal(AccountForm)
+    console.log('modal result', result)
+    setExpanded(false)
+  }
+
+  const handleAnimalOpen = async () => {
+    setExpanded(true)
+    const result = await openModal(AnimalForm)
     console.log('modal result', result)
     setExpanded(false)
   }
@@ -23,9 +31,17 @@ const ModalFormPage = () => {
           type="button"
           aria-haspopup="dialog"
           aria-expanded={expanded}
-          onClick={handleOpen}
+          onClick={handleAccountOpen}
         >
-          모달 열기
+          계정 모달 열기
+        </button>
+        <button
+          type="button"
+          aria-haspopup="dialog"
+          aria-expanded={expanded}
+          onClick={handleAnimalOpen}
+        >
+          동물 모달 열기
         </button>
       </header>
 
