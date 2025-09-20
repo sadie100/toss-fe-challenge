@@ -79,6 +79,11 @@ export const ModalControllerProvider = ({
             close(null)
           }
         }}
+        style={{
+          minHeight: '50px',
+          maxHeight: '90vh',
+          overflowY: 'auto',
+        }}
       >
         {active ? active.render((v) => close(v)) : null}
       </dialog>

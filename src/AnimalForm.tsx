@@ -45,6 +45,9 @@ const AnimalForm = ({ initialValues, close }: FormModalContentProps) => {
           defaultValue={initialValues?.age ?? ''}
           required
         />
+        {new Array(100).fill(0).map((_, index) => (
+          <p key={index}>동물은 정말 귀엽습니다. 스크롤용 내용 채우기입니다.</p>
+        ))}
         <div
           style={{
             display: 'flex',
