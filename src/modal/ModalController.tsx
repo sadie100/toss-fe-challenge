@@ -84,6 +84,9 @@ export const ModalControllerProvider = ({
           maxHeight: '90vh',
           overflowY: 'auto',
         }}
+        onCancel={() => {
+          close(null)
+        }}
       >
         {active ? active.render((v) => close(v)) : null}
       </dialog>
