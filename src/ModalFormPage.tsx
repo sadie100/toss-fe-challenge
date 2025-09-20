@@ -1,13 +1,30 @@
-import type { CSSProperties } from 'react'
+import { useState } from 'react'
+import useOpenModal from './modal/useOpenModal'
+import AccountForm from './AccountForm'
 
 const blocks = [...Array(40)].map((_, i) => i + 1)
 
 const ModalFormPage = () => {
+  const [expanded, setExpanded] = useState(false)
+  const openModal = useOpenModal()
+
+  const handleOpen = async () => {
+    setExpanded(true)
+    const result = await openModal(AccountForm)
+    console.log('modal result', result)
+    setExpanded(false)
+  }
+
   return (
     <div>
       <header>
         <h1>접근성 친화 모달 데모</h1>
-        <button type="button" aria-haspopup="dialog" aria-expanded={false}>
+        <button
+          type="button"
+          aria-haspopup="dialog"
+          aria-expanded={expanded}
+          onClick={handleOpen}
+        >
           모달 열기
         </button>
       </header>
